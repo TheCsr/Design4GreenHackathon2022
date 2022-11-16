@@ -3,74 +3,73 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/leaflet.css"/>
+    <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/pico.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <main class='container'>
-        <nav class = "menu">
+    <main class='container-fluid'>
+        <nav class="menu">
             <ul>
-              <li>
-                <a href="#" class="secondary">
-                    <img src="assets/img/DESIGN4GREEN_logo.png" alt="Logo" class = "logo">
-                </a>
-            </li>
+                <li>
+                    <a href="#" class="secondary">
+                        <img src="assets/img/DESIGN4GREEN_logo.png" alt="Logo" class="logo">
+                    </a>
+                </li>
             </ul>
             <ul>
-              <li>
-                <input type="search" id="search" name="search" placeholder="Search">
-            </li>
+                <li>
+                    <input type="search" id="search" name="search" placeholder="Search">
+                </li>
             </ul>
             <ul>
-              <li>
-                <a href="#" class="secondary">
-                    <svg alt="Cart" class = "cart-icon" data-target="modal-cart" onclick="toggleModal(event)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                      </svg>
-                </a>
-            </li>
+                <li>
+                    <a href="#" class="secondary">
+                        <svg alt="Cart" class="cart-icon" data-target="modal-cart" onclick="toggleModal(event)"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                        </svg>
+                    </a>
+                </li>
             </ul>
         </nav>
-        <hr/>
+        <hr />
         <div class="grid filter-menu">
-            <div> <label> Filter by:</label></div>
+            <div id="filter"> <label> Filter by:</label></div>
             <!-- Dropdown -->
             <div>
-                <details role="list">
-                    <summary aria-haspopup="listbox">Dropdown1</summary>
+                <select>
+                    <!-- <summary aria-haspopup="listbox">Dropdown1</summary> -->
                     <ul role="listbox">
-                        <li><a>Action</a></li>
-                        <li><a>Another action</a></li>
-                        <li><a>Something else here</a></li>
+                        <option>Action</option>
+                        <option>Another action</option>
+                        <option>Something else here</option>
                     </ul>
-                </details>
+                </select>
             </div>
-            
+
             <select>
                 <option>Action</option>
                 <option>Another action</option>
             </select>
 
-            <details role="list">
-                <summary aria-haspopup="listbox">Dropdown2</summary>
+            <select>
                 <ul role="listbox">
-                    <li><a>Action</a></li>
-                    <li><a>Another action</a></li>
-                    <li><a>Something else here</a></li>
+                    <option>Action</option>
+                    <option>Another action</option>
+                    <option>Something else here</option>
                 </ul>
-            </details>
+            </select>
 
 
-            <details role="list">
-                <summary aria-haspopup="listbox">Dropdown3</summary>
-                <ul role="listbox">
-                    <li><a>Action</a></li>
-                    <li><a>Another action</a></li>
-                    <li><a>Something else here</a></li>
-                </ul>
-            </details>
+            <select>
+                <option>Action</option>
+                <option>Another action</option>
+                <option>Something else here</option>
+            </select>
 
 
             <!-- <details role="list">
@@ -82,16 +81,20 @@
                 </ul>
             </details> -->
 
-            <label for="range">Duration of training
-                <input type="range" min="0" max="100" value="50" id="range" name="range">
-            </label>
+            <div id="duration-range">
+                <label for="range">Training duration
+                    <input type="range" min="0" max="100" value="50" id="range" name="range">
+                </label>
+            </div>
         </div>
+        <br>
 
 
         <div class="grid">
             # of results matching your search
         </div>
         <br />
+
 
 
         <div class="grid">
@@ -107,8 +110,8 @@
                     Short Description of the programme
 
                     <button data-target="modal-example" onclick="toggleModal(event)"> .....more details</button>
-                    
-                   
+
+
 
                 </article>
 
@@ -123,9 +126,9 @@
                 </article>
             </div>
             <div>
-                <div class = 'map'>
+                <div class='map'>
                     <div id="map"></div>
-                   </div>
+                </div>
             </div>
         </div>
     </main>
@@ -133,84 +136,93 @@
 
     <dialog id="modal-example">
         <article>
-          <a href="#close" aria-label="Close" class="close" data-target="modal-example" onclick="toggleModal(event)"></a>
-          <h3>More info abt the course here... </h3>
-          <p>Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam finibus risus non semper euismod.</p>
-          <footer>
-            <!-- <a href="#cancel" role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</a> -->
-            <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Add to cart</a>
-          </footer>
+            <a href="#close" aria-label="Close" class="close" data-target="modal-example"
+                onclick="toggleModal(event)"></a>
+            <h3>More info abt the course here... </h3>
+            <p>Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam
+                finibus risus non semper euismod.</p>
+            <footer>
+                <!-- <a href="#cancel" role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</a> -->
+                <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Add to
+                    cart</a>
+            </footer>
         </article>
-      </dialog>
+    </dialog>
 
-      
+
     <dialog id="modal-delete">
         <article>
-          <a href="#close" aria-label="Close" class="close" data-target="modal-delete" onclick="toggleModal(event)"></a>
-          <h3>Are you sure you want to delete? </h3>
-          <footer>
-            <a href="#cancel" role="button" class="secondary" data-target="modal-delete" onclick="toggleModal(event)">Cancel</a>
-            <a href="#confirm" role="button" data-target="modal-delete" onclick="toggleModal(event)">Delete</a>
-          </footer>
+            <a href="#close" aria-label="Close" class="close" data-target="modal-delete"
+                onclick="toggleModal(event)"></a>
+            <h3>Are you sure you want to delete? </h3>
+            <footer>
+                <a href="#cancel" role="button" class="secondary" data-target="modal-delete"
+                    onclick="toggleModal(event)">Cancel</a>
+                <a href="#confirm" role="button" data-target="modal-delete" onclick="toggleModal(event)">Delete</a>
+            </footer>
         </article>
-      </dialog>
+    </dialog>
 
 
-      
+
     <dialog id="modal-cart">
         <article>
-          <a href="#close" aria-label="Close" class="close" data-target="modal-cart" onclick="toggleModal(event)"></a>
-          <h3>Your basket </h3>
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Title</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Cell</td>
-                <!-- <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30" data-target="modal-delete" onclick="toggleModal(event)"></td> -->
-                <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30"></td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Cell</td>
-                <td>Cell</td>
-              </tr>
-            </tbody>
-            <tfoot>
-              <tr>
-                <th scope="col">#</th>
-                <td scope="col">Total</td>
-                <td scope="col">Total</td>
-              </tr>
-            </tfoot>
-          </table>         
-           <footer>
-            <a href="#cancel" role="button" class="secondary" data-target="modal-cart" onclick="toggleModal(event)">Cancel</a>            
-            <a href="#exportPDF" role="button" class="contrast outline" data-target="modal-cart" onclick="toggleModal(event)">Export to PDF</a>
-            <a href="#exportExcel" role="button" class="contrast outline" data-target="modal-cart" onclick="toggleModal(event)">Export to Excel</a>
-            <a href="#confirm" role="button" data-target="modal-cart" onclick="toggleModal(event)">Confirm my basket</a>
-          </footer>
+            <a href="#close" aria-label="Close" class="close" data-target="modal-cart" onclick="toggleModal(event)"></a>
+            <h3>Your basket </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>Cell</td>
+                        <!-- <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30" data-target="modal-delete" onclick="toggleModal(event)"></td> -->
+                        <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>Cell</td>
+                        <td>Cell</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th scope="col">#</th>
+                        <td scope="col">Total</td>
+                        <td scope="col">Total</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <footer>
+                <a href="#cancel" role="button" class="secondary" data-target="modal-cart"
+                    onclick="toggleModal(event)">Cancel</a>
+                <a href="#exportPDF" role="button" class="contrast outline" data-target="modal-cart"
+                    onclick="toggleModal(event)">Export to PDF</a>
+                <a href="#exportExcel" role="button" class="contrast outline" data-target="modal-cart"
+                    onclick="toggleModal(event)">Export to Excel</a>
+                <a href="#confirm" role="button" data-target="modal-cart" onclick="toggleModal(event)">Confirm my
+                    basket</a>
+            </footer>
         </article>
-      </dialog>
-<footer class="container">
-    <small> Deisgned by : team26</small>
+    </dialog>
+    <footer class="container">
+        <small> Deisgned by : team26</small>
 
-</footer>
+    </footer>
     <script src="js/alpine.min.js"></script>
     <script src="js/leaflet.js"></script>
-    <script src = "js/modal.js"></script>
+    <script src="js/modal.js"></script>
     <script>
-       var map = L.map('map').setView([46.52, 1.5], 6);
-       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
-           maxZoom: 8,
-           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,  &copy; <a href="https://carto.com/attributions">CARTO</a>'
-       }).addTo(map);
+        var map = L.map('map').setView([46.52, 1.5], 6);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+            maxZoom: 8,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,  &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
     </script>
 </body>
 
