@@ -1,4 +1,4 @@
-.container{
+.container-fluid{
     padding-top: 1rem !important;
 }
 
@@ -27,8 +27,20 @@
 }
 
 select{
-    height: 50px;
-    padding: 0px !important;
+    height: 45px;
+    padding: 0px 0px 0px 15px !important;
+    /* padding-left: 20px; */
+}
+
+#duration-range{
+    height: 20px;
+
+}
+
+
+#filter{
+    width: 100px;
+
 }
 
 
