@@ -1,0 +1,5 @@
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	padding: 1px 5px !important;
+	border-radius: 0px !important;
+	}
