@@ -125,16 +125,58 @@
         </article>
       </dialog>
 
+      
+    <dialog id="modal-delete">
+        <article>
+          <a href="#close" aria-label="Close" class="close" data-target="modal-delete" onclick="toggleModal(event)"></a>
+          <h3>Are you sure you want to delete? </h3>
+          <footer>
+            <a href="#cancel" role="button" class="secondary" data-target="modal-delete" onclick="toggleModal(event)">Cancel</a>
+            <a href="#confirm" role="button" data-target="modal-delete" onclick="toggleModal(event)">Delete</a>
+          </footer>
+        </article>
+      </dialog>
+
 
       
     <dialog id="modal-cart">
         <article>
           <a href="#close" aria-label="Close" class="close" data-target="modal-cart" onclick="toggleModal(event)"></a>
           <h3>Your basket </h3>
-          <p>Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam finibus risus non semper euismod.</p>
-          <footer>
-            <!-- <a href="#cancel" role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</a> -->
-            <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Add to cart</a>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>Cell</td>
+                <!-- <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30" data-target="modal-delete" onclick="toggleModal(event)"></td> -->
+                <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30"></td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Cell</td>
+                <td>Cell</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="col">#</th>
+                <td scope="col">Total</td>
+                <td scope="col">Total</td>
+              </tr>
+            </tfoot>
+          </table>         
+           <footer>
+            <a href="#cancel" role="button" class="secondary" data-target="modal-cart" onclick="toggleModal(event)">Cancel</a>            
+            <a href="#exportPDF" role="button" class="contrast outline" data-target="modal-cart" onclick="toggleModal(event)">Export to PDF</a>
+            <a href="#exportExcel" role="button" class="contrast outline" data-target="modal-cart" onclick="toggleModal(event)">Export to Excel</a>
+            <a href="#confirm" role="button" data-target="modal-cart" onclick="toggleModal(event)">Confirm my basket</a>
           </footer>
         </article>
       </dialog>
