@@ -59,14 +59,17 @@ select{
     height: 100vh; 
     width: 620px;
     margin-top: 20px; /* Adding margin to map to align with cards*/
-    position: sticky !important;
+
 }
 
-.map{
-    position: relative !important;
-    height: 100vh;
-}
+
 
 article{
     margin-top: 20px;
+}
+
+.stick {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
 }
