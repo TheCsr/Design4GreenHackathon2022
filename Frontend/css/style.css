@@ -1,0 +1,51 @@
+.container{
+    padding-top: 1rem !important;
+}
+
+.cart-icon{
+    height: 30px;
+    width: 30px;
+}
+
+.menu{
+    margin-top: 0px !important;
+    padding-top: 10px !important;
+}
+
+.menu li{
+    padding: 0px !important;
+}
+
+.logo{
+    height: 50px;
+    width: 50px;
+}
+
+#search{
+    min-width: 10vw;
+    width: 500px;
+    height: 45px;
+}
+
+select{
+    height: 50px;
+}
+
+
+
+
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	padding: 1px 5px !important;
+	border-radius: 0px !important;
+}
+#map{ 
+    height: 650px; 
+    width: 620px;
+    margin-top: 20px; /* Adding margin to map to align with cards*/
+}
+
+article{
+    margin-top: 20px;
+}

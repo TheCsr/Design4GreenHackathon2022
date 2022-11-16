@@ -1,30 +1,41 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/pico.min.css" />
-    <script src="js/modal.js"></script>
-
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/leaflet.css"/>
+    <link rel="stylesheet" href="css/pico.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-
     <main class='container'>
-        <div class="grid">
-            <div> <img src="assets/img/DESIGN4GREEN_logo.png" alt="Logo" height="100" width="100"> </div>
-            <div><label for="search">Search</label><input type="search" id="search" name="search" placeholder="Search">
-            </div>
-            <div> <img src="assets/img/cart1.png" alt="Cart" height="100" width="100" data-target="modal-cart" onclick="toggleModal(event)"> </div>
-        </div>
-        <br>
-        <div class="grid">
+        <nav class = "menu">
+            <ul>
+              <li>
+                <a href="#" class="secondary">
+                    <img src="assets/img/DESIGN4GREEN_logo.png" alt="Logo" class = "logo">
+                </a>
+            </li>
+            </ul>
+            <ul>
+              <li>
+                <input type="search" id="search" name="search" placeholder="Search">
+            </li>
+            </ul>
+            <ul>
+              <li>
+                <a href="#" class="secondary">
+                    <svg alt="Cart" class = "cart-icon" data-target="modal-cart" onclick="toggleModal(event)" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+                      </svg>
+                </a>
+            </li>
+            </ul>
+        </nav>
+        <hr/>
+        <div class="grid filter-menu">
             <div> <label> Filter by:</label></div>
-            <!-- <div>
-                <select id="fruit" required>
-                    <option value="" selected>Select a cycle de formation…</option>
-                    <option>…</option>
-                </select>
-            </div> -->
-
             <!-- Dropdown -->
             <div>
                 <details role="list">
@@ -107,7 +118,9 @@
                 </article>
             </div>
             <div>
-                map view here
+                <div class = 'map'>
+                    <div id="map"></div>
+                   </div>
             </div>
         </div>
     </main>
@@ -185,6 +198,15 @@
 
 </footer>
     <script src="js/alpine.min.js"></script>
+    <script src="js/leaflet.js"></script>
+    <script src = "js/modal.js"></script>
+    <script>
+       var map = L.map('map').setView([46.52, 1.5], 6);
+       L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+           maxZoom: 8,
+           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,  &copy; <a href="https://carto.com/attributions">CARTO</a>'
+       }).addTo(map);
+    </script>
 </body>
 
 </html>
