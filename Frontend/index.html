@@ -1,13 +1,148 @@
 <html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="css/pico.min.css" />
-    </head>
-    <body>
-        <main class = 'container'>
-            
-        </main>
-          
-    <script src = "js/alpine.min.js"></script>
-    </body>
-    
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/pico.min.css" />
+    <script src="js/modal.js"></script>
+
+</head>
+
+<body>
+
+    <main class='container'>
+        <div class="grid">
+            <div> <img src="assets/img/DESIGN4GREEN_logo.png" alt="Logo" height="100" width="100"> </div>
+            <div><label for="search">Search</label><input type="search" id="search" name="search" placeholder="Search">
+            </div>
+            <div> <img src="assets/img/cart1.png" alt="Cart" height="100" width="100" data-target="modal-cart" onclick="toggleModal(event)"> </div>
+        </div>
+        <br>
+        <div class="grid">
+            <div> <label> Filter by:</label></div>
+            <!-- <div>
+                <select id="fruit" required>
+                    <option value="" selected>Select a cycle de formation…</option>
+                    <option>…</option>
+                </select>
+            </div> -->
+
+            <!-- Dropdown -->
+            <div>
+                <details role="list">
+                    <summary aria-haspopup="listbox">Dropdown1</summary>
+                    <ul role="listbox">
+                        <li><a>Action</a></li>
+                        <li><a>Another action</a></li>
+                        <li><a>Something else here</a></li>
+                    </ul>
+                </details>
+            </div>
+
+            <details role="list">
+                <summary aria-haspopup="listbox">Dropdown2</summary>
+                <ul role="listbox">
+                    <li><a>Action</a></li>
+                    <li><a>Another action</a></li>
+                    <li><a>Something else here</a></li>
+                </ul>
+            </details>
+
+
+            <details role="list">
+                <summary aria-haspopup="listbox">Dropdown3</summary>
+                <ul role="listbox">
+                    <li><a>Action</a></li>
+                    <li><a>Another action</a></li>
+                    <li><a>Something else here</a></li>
+                </ul>
+            </details>
+
+
+            <!-- <details role="list">
+                <summary aria-haspopup="listbox">Dropdown3</summary>
+                <ul role="listbox">
+                    <li><a>Action</a></li>
+                    <li><a>Another action</a></li>
+                    <li><a>Something else here</a></li>
+                </ul>
+            </details> -->
+
+            <label for="range">Duration of training
+                <input type="range" min="0" max="100" value="50" id="range" name="range">
+            </label>
+        </div>
+
+
+        <div class="grid">
+            # of results matching your search
+        </div>
+        <br />
+
+
+        <div class="grid">
+            <div>
+                <article>
+
+                    Card 1 :
+                    <h1>Title of the course</h1>
+                    <h3>Name of the organisation</h3>
+                    Duration of the training +
+                    Location of the structure<br>
+                    Methods of access to training<br>
+                    Short Description of the programme
+
+                    <button data-target="modal-example" onclick="toggleModal(event)"> .....more details</button>
+                    
+                   
+
+                </article>
+
+                <article>
+
+                    Card 2
+                </article>
+
+                <article>
+
+                    Card 3
+                </article>
+            </div>
+            <div>
+                map view here
+            </div>
+        </div>
+    </main>
+
+
+    <dialog id="modal-example">
+        <article>
+          <a href="#close" aria-label="Close" class="close" data-target="modal-example" onclick="toggleModal(event)"></a>
+          <h3>More info abt the course here... </h3>
+          <p>Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam finibus risus non semper euismod.</p>
+          <footer>
+            <!-- <a href="#cancel" role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</a> -->
+            <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Add to cart</a>
+          </footer>
+        </article>
+      </dialog>
+
+
+      
+    <dialog id="modal-cart">
+        <article>
+          <a href="#close" aria-label="Close" class="close" data-target="modal-cart" onclick="toggleModal(event)"></a>
+          <h3>Your basket </h3>
+          <p>Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam finibus risus non semper euismod.</p>
+          <footer>
+            <!-- <a href="#cancel" role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</a> -->
+            <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Add to cart</a>
+          </footer>
+        </article>
+      </dialog>
+<footer class="container">
+    <small> Deisgned by : team26</small>
+
+</footer>
+    <script src="js/alpine.min.js"></script>
+</body>
+
 </html>
