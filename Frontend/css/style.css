@@ -49,3 +49,9 @@ select{
 article{
     margin-top: 20px;
 }
+
+.stick {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
