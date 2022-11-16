@@ -22,13 +22,13 @@
 }
 
 #search{
-    min-width: 10vw;
-    width: 500px;
+
     height: 45px;
 }
 
 select{
     height: 50px;
+    padding: 0px !important;
 }
 
 
