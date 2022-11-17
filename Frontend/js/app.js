@@ -15,18 +15,41 @@ let event = new CustomEvent("courses-load", {
       courses: {
         search : "",
         allFilters : {},
+        selectedFilters : {
+            trainingType : "",
+            organisationType : "",
+            location : "",
+            duration : 1,
+        },
         data: [],
+        filteredResults : [],
         get filteredCourses() {
             if (this.search === "") {
               return this.data;
             }
+            console.log("Filter function is running",this.selectedFilters.duration)
             let filteringKeys = ['Course Title','Short Description', 'Organisation Name']
             return this.data.filter(e => {
                 const entries = Object.entries(e);
                 console.log(entries)
                 return entries.some(entry=>entry[1]?entry[1].toString().includes(this.search):false);
-            });
+            })
         },
+        filterResults(){
+            keptCourses = 0;
+            let r = this.filteredCourses.filter(course => {
+            if(
+                this.selectedFilters.trainingType == course["Type of Training"] || 
+                this.selectedFilters.trainingType == "any"|| 
+                this.selectedFilters.trainingType == ""
+             ){
+                keptCourses++;
+                return course
+             }
+           })
+           console.log("Kept courses",r.length)
+           this.filteredCourses = r   
+        }
         
 
       }

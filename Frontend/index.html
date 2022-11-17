@@ -49,8 +49,12 @@
                 <div id="filter"> <label> Filter by:</label></div>
                 <!-- Dropdown -->
                 <div>
-                    <select>
-                        <option selected disabled>Type of Training</option>
+                    <select 
+                    x-model = 'courses.selectedFilters.trainingType' 
+                    x-init = "$watch('courses.selectedFilters.trainingType', (val) => courses.filterResults())"
+                    >
+                        <option value = "" selected disabled>Type of Training</option>
+                        <option value = "any" >Any</option>
                         <template x-for = 'option in courses.allFilters.trainingType'>
                             <option x-text = 'option'></option>
                         </template>
@@ -58,19 +62,21 @@
                 </div>
     
                 <div>
-                    <select>
-                        <option selected disabled>Organisation Type</option>
+                    <select x-model = 'courses.selectedFilters.organisationType'>
+                        <option value = "" selected disabled>Organisation Type</option>
+                        <option value = "any" >Any</option>
                         <template x-for = 'option in courses.allFilters.orgType'>
-                            <option x-text = 'option'></option>
+                            <option x-bind:value="option" x-text = 'option'></option>
                         </template>
                     </select>
                 </div>
 
                 <div>
-                    <select>
-                        <option selected disabled> Location </option>
+                    <select x-model = 'courses.selectedFilters.location'>
+                        <option value = "" selected disabled> Location </option>
+                        <option value = "any" >Any</option>
                         <template x-for = 'option in courses.allFilters.location'>
-                            <option x-text = 'option'></option>
+                            <option x-bind:value="option" x-text = 'option'></option>
                         </template>
                     </select>
                 </div>
@@ -85,21 +91,61 @@
                     </ul>
                 </details> -->
     
-                <div id="duration-range">
-                    <label for="range">Training duration
-                        <input type="range" min="0" max="100" value="50" id="range" name="range">
+                <div id="duration-range" >
+                    <label for="range">Duration : <span x-text = 'courses.selectedFilters.duration'></span> days.
+                        <input x-model = 'courses.selectedFilters.duration'  type="range" min="0" max="60" value="50" id="range" name="range">
                     </label>
                 </div>
             </div>
         </div>
-  
+
         
 
         <div class="grid">
            
             <div x-show = 'courses.filteredCourses.length > 0'>
                 <h3><span x-text="courses.filteredCourses.length"></span> Courses found</h3>
-                <template x-for="course in courses.filteredCourses">
+                <template x-for="course in courses.filteredCourses" x-show="courses.filteredResults==0">
+                    <article>
+                        <h1 x-text="course['Course Title']"></h1>
+                        <div class = "organisation">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                            </svg>                              
+                            <h6 x-text = "course['Organisation Name']"></h6>
+                        </div>
+                        <div class = "description">
+                            <h6>Programme Description :</h6>
+                            <p x-text = 'shorten(course["Programme Description"],180) + "..."'></p>
+                        </div>
+                        <hr/>
+                        <div class = "grid metadata">
+                            <div class = "column">
+                                <svg xmlns="http://www.w3.org/2000/svg" alt="Duration" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>                                  
+                                <span x-text="course['Duration (days)']"></span>
+                            </div>
+                            <div class = "column">
+                                <svg xmlns="http://www.w3.org/2000/svg" alt="Location" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                  </svg>                                  
+                                <span x-text="course['Location']"></span>
+                            </div>
+                            <div class = "column">
+                                <span x-text="course['Type of Training']"></span>
+                            </div>
+                        </div>
+                        <button data-target="modal-example" onclick="toggleModal(event)"> .....more details</button>
+    
+    
+    
+                    </article>
+    
+                </template>
+
+                <template x-for="course in courses.filteredResults" x-show = "courses.filteredResults.length > 0">
                     <article>
                         <h1 x-text="course['Course Title']"></h1>
                         <div class = "organisation">
