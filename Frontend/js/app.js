@@ -1,8 +1,35 @@
 
+/* When the page is loaded, a request is made to the server to fetch data, when the data is received, 
+a custom event (courses-load) is triggered, with the courses object as payload, alpine js will receive
+this event on the main page, thus load a global courses object that is accessible everywhere for filtering
+The courses object contains not just courses data, but also different functions related to that data like filtering
+*/
+
+function getUniqueValues(arr,col){
+    return Array.from(new Set(arr.map((item) => item[col])))
+}
+
 
 let event = new CustomEvent("courses-load", {
     detail: {
-      courses: []
+      courses: {
+        search : "",
+        allFilters : {},
+        data: [],
+        get filteredCourses() {
+            if (this.search === "") {
+              return this.data;
+            }
+            let filteringKeys = ['Course Title','Short Description', 'Organisation Name']
+            return this.data.filter(e => {
+                const entries = Object.entries(e);
+                console.log(entries)
+                return entries.some(entry=>entry[1]?entry[1].toString().includes(this.search):false);
+            });
+        },
+        
+
+      }
     }
   });
 
@@ -10,7 +37,14 @@ function reqListener() {
     console.log(this.responseText)
     let courses = JSON.parse(this.responseText).data.data.slice(0,100);
     console.log(courses)
-    event.detail.courses = courses
+    event.detail.courses.data = courses
+    event.detail.courses.allFilters =  {
+        orgType : getUniqueValues(courses,"Organisation Type"),
+        trainingType : getUniqueValues(courses,"Type of Training"),
+        location: getUniqueValues(courses,"Location"),
+        durationMax : 60,
+        durationMin : 0
+    }
     console.log(event)
     window.dispatchEvent(event);
 }

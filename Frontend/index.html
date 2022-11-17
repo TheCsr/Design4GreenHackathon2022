@@ -2,7 +2,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="css/leaflet.css" />
     <link rel="stylesheet" href="css/pico.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <main class='container-fluid'>
+    <main class='container-fluid' x-data="{courses : {}}" @courses-load.window = "courses = $event.detail.courses">
         <div class = 'header stick-top'>
             <nav class="menu">
                 <ul>
@@ -23,7 +23,12 @@
                 </ul>
                 <ul>
                     <li>
-                        <input type="search" id="search" name="search" placeholder="Search">
+                        <input 
+                            type="search" 
+                            placeholder="Search for courses"
+                            x-ref="searchField"
+                            x-model="courses.search"
+                        />
                     </li>
                 </ul>
                 <ul>
@@ -45,34 +50,30 @@
                 <!-- Dropdown -->
                 <div>
                     <select>
-                        <!-- <summary aria-haspopup="listbox">Dropdown1</summary> -->
-                        <ul role="listbox">
-                            <option>Action</option>
-                            <option>Another action</option>
-                            <option>Something else here</option>
-                        </ul>
+                        <option selected disabled>Type of Training</option>
+                        <template x-for = 'option in courses.allFilters.trainingType'>
+                            <option x-text = 'option'></option>
+                        </template>
                     </select>
                 </div>
     
-                <select>
-                    <option>Action</option>
-                    <option>Another action</option>
-                </select>
-    
-                <select>
-                    <ul role="listbox">
-                        <option>Action</option>
-                        <option>Another action</option>
-                        <option>Something else here</option>
-                    </ul>
-                </select>
-    
-    
-                <select>
-                    <option>Action</option>
-                    <option>Another action</option>
-                    <option>Something else here</option>
-                </select>
+                <div>
+                    <select>
+                        <option selected disabled>Organisation Type</option>
+                        <template x-for = 'option in courses.allFilters.orgType'>
+                            <option x-text = 'option'></option>
+                        </template>
+                    </select>
+                </div>
+
+                <div>
+                    <select>
+                        <option selected disabled> Location </option>
+                        <template x-for = 'option in courses.allFilters.location'>
+                            <option x-text = 'option'></option>
+                        </template>
+                    </select>
+                </div>
     
     
                 <!-- <details role="list">
@@ -96,9 +97,9 @@
 
         <div class="grid">
            
-            <div x-data=" {courses : []}" @courses-load.window = "courses = $event.detail.courses">
-                <h3><span x-text="courses.length"></span> Courses Found</h3>
-                <template x-for="course in courses">
+            <div x-show = 'courses.filteredCourses.length > 0'>
+                <h3><span x-text="courses.filteredCourses.length"></span> Courses found</h3>
+                <template x-for="course in courses.filteredCourses">
                     <article>
                         <h1 x-text="course['Course Title']"></h1>
                         <div class = "organisation">
@@ -107,7 +108,10 @@
                             </svg>                              
                             <h6 x-text = "course['Organisation Name']"></h6>
                         </div>
-                        
+                        <div class = "description">
+                            <h6>Programme Description :</h6>
+                            <p x-text = 'shorten(course["Programme Description"],180) + "..."'></p>
+                        </div>
                         <hr/>
                         <div class = "grid metadata">
                             <div class = "column">
@@ -145,7 +149,9 @@
                     Card 3
                 </article>
             </div>
-
+            <div x-show = 'courses.filteredCourses.length == 0' class = 'no-results'>
+                <h1>Sorry, No courses were found with your query.</h1>
+            </div>
             <div >
                 <div class = 'map stick-top'>
                     <div id="map" class="stick"></div>
@@ -246,6 +252,10 @@
         maxZoom: 8,
         attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,  &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(map);
+    function shorten(str, maxLen, separator = ' ') {
+        if (str.length <= maxLen) return str;
+        return str.substr(0, str.lastIndexOf(separator, maxLen));
+    }
     </script>
     <script src="js/app.js"></script>
 </body>
