@@ -119,6 +119,10 @@ article h1{
     margin-bottom: 10px;
 }
 
+h1{
+    font-size: 1.5rem;
+}
+
 .metadata{
     margin-bottom: 10px;
 }
@@ -136,6 +140,7 @@ article h1{
 
 .organisation h6{
     display: inline;
+    margin-bottom : 5px;
 
 }
 
@@ -156,7 +161,15 @@ article h1{
     margin-right: 0px;
 }
 
+.description h6{
+    margin: 5px auto;
+    font-size: 15px;
+}
 
+.description p{
+   padding: 2px;
+   text-align: justify; 
+}
 
 
 .organisation svg{
@@ -164,6 +177,14 @@ article h1{
    height: 30px;
    padding: 0px 5px;  
 }
+
+
+
+.no-results{
+    margin-top: 50px;
+    text-align:center
+}
+
 
 .stick {
     position: -webkit-sticky;
