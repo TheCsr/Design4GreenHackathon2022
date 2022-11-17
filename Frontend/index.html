@@ -104,10 +104,10 @@
 
         <div class="grid">
            
-            <div x-show = 'courses.filteredCourses.length > 0'>
+            <div  x-show = 'courses.filteredCourses.length > 0'>
                 <h3><span x-text="courses.filteredCourses.length"></span> Courses found</h3>
-                <template x-for="course in courses.filteredCourses">
-                    <article>
+                <template x-for="course in courses.filteredCourses" x-key = "course.id">
+                    <article x-bind:id = "course.id">
                         <h1 x-text="course['Course Title']"></h1>
                         <div class = "organisation">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -169,7 +169,7 @@
             <div x-data="{}" x-show = 'courses.filteredCourses.length == 0' class = 'no-results'>
                 <h1>Sorry, No courses were found with your query.</h1>
             </div>
-            <div x-show = 'courses.filteredCourses.length > 0' x-data="{}" x-init = "courses.loadMarkers()">
+            <div x-show = 'courses.filteredCourses.length > 0'  x-init = "courses.loadMarkers()">
                 <div class = 'map stick-top'>
                     <div id="map" class="stick"></div>
 
