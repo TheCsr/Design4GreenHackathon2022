@@ -12,7 +12,23 @@
 </head>
 
 <body>
-    <main class='container-fluid' x-data="{courses : {}}" @courses-load.window = "courses = $event.detail.courses">
+    <main class='container-fluid' x-data="{courses : {},
+    showCartModal: false,
+    showDetailsModal: false, 
+    cart: JSON.parse(localStorage.getItem('cart')) ? JSON.parse(localStorage.getItem('cart')) : [], 
+    addToCart(course){
+        this.cart.push(course)
+        localStorage.setItem('cart',JSON.stringify(this.cart))
+        this.cart = JSON.parse(localStorage.getItem('cart'))
+    },
+    removeFromCart(course){
+        newCart = this.cart.filter(function( obj ) {
+            return obj.id !== course.id;
+          });
+        localStorage.setItem('cart',JSON.stringify(newCart))
+        this.cart = newCart
+    }
+}" @courses-load.window = "courses = $event.detail.courses">
         <div class = 'header stick-top'>
             <nav class="menu">
                 <ul>
@@ -34,13 +50,16 @@
                 </ul>
                 <ul>
                     <li>
-                        <a href="#" class="secondary" data-target="modal-cart" onclick="toggleModal(event)">
+                        <a href="#" class="secondary" @click="showCartModal = true">
                             <svg alt="Cart" class="cart-icon" 
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 40 40" stroke-width="1.5"
                                 stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-                            </svg>
+                                    <circle class="cart-count-bg" cx="20" cy="6" r="6"/>
+                                    <text class = "cart-count" x-text = "cart.length" x="20" y="9" text-anchor="middle"></text>
+                                </svg>
+                                
                         </a>
                     </li>
                 </ul>
@@ -140,8 +159,8 @@
                         </div>
                         <div class="card-buttons">
                             <span>
-                                <a href="#" role="button" class="primary btn">
-                                    <svg alt="Add to cart" class="add-to-cart-icon" data-target="modal-add-to-cart"
+                                <a href="#" role="button" @click="addToCart(course)" class="primary btn">
+                                    <svg alt="Add to cart" class="add-to-cart-icon" 
                                          xmlns="http://www.w3.org/2000/svg" fill="none"
                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -176,6 +195,53 @@
                 </div>
             </div>
         </div>
+
+        <div class = 'modal' x-show="showCartModal">
+            <div  class="modal-content">
+                <div class = 'modal-header'>
+                    <span class="close" @click = 'showCartModal=false'>&times;</span>
+                    <h2>Summary of Selected Courses.</h2>
+                </div>
+                <div class = 'modal-body'>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template x-for="item in cart" :key = 'item.id'>
+                                <tr>
+                                    <th x-text="item.id"></th>
+                                    <td x-text = "item['Course Title']"></td>
+                                <td
+                                    @click = 'removeFromCart(item)'
+                                >
+                                <svg height="30" width="30" fill="#F61F1F" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                                  </svg>
+                                  
+                                </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class = 'modal-footer'>
+                    
+                    <a href="#exportPDF" role="button" class="contrast outline" data-target="modal-cart"
+                        @click="exportPDF()">Export to PDF</a>
+                    
+                    <a href="#confirm"  role="button" data-target="modal-cart" @click="confirm">Confirm
+                        basket</a>
+                    </div>
+                </div>
+        </div>
+
+
     </main>
 
 
@@ -258,51 +324,7 @@
 
 
 
-    <dialog id="modal-cart">
-        <article class="modal-custom">
-            <a href="#close" aria-label="Close" class="close" data-target="modal-cart" onclick="toggleModal(event)"></a>
-            <h3>Your basket </h3>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Cell</td>
-                        <!-- <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30" data-target="modal-delete" onclick="toggleModal(event)"></td> -->
-                        <td><img src="assets/img/delete1.png" alt="Delete from cart" height="30" width="30"></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Cell</td>
-                        <td>Cell</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th scope="col">#</th>
-                        <td scope="col">Total</td>
-                        <td scope="col">Total</td>
-                    </tr>
-                </tfoot>
-            </table>
-            <footer>
-                <a href="#cancel" role="button" class="secondary" data-target="modal-cart"
-                    onclick="toggleModal(event)">Cancel</a>
-                <a href="#exportPDF" role="button" class="contrast outline" data-target="modal-cart"
-                    onclick="toggleModal(event)">Export to PDF</a>
-                <a href="#exportExcel" role="button" class="contrast outline" data-target="modal-cart"
-                    onclick="toggleModal(event)">Export to Excel</a>
-                <a href="#confirm" role="button" data-target="modal-cart" onclick="toggleModal(event)">Confirm
-                    basket</a>
-            </footer>
-        </article>
-    </dialog>
+   
     <footer class="container">
         <small> Deisgned by : team26</small>
 
