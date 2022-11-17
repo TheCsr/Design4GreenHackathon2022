@@ -84,7 +84,7 @@ function reqError(err) {
 var oReq = new XMLHttpRequest();
 oReq.onload = reqListener;
 oReq.onerror = reqError;
-oReq.open('get', 'http://54.36.98.185/courses', true);
+oReq.open('get', 'http://54.36.98.185:3000/courses', true);
 oReq.send();
 /*
 document.addEventListener('alpine:init', () => {
