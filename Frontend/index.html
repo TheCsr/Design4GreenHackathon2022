@@ -166,10 +166,10 @@
     
                 </template>
             </div>
-            <div x-show = 'courses.filteredCourses.length == 0' class = 'no-results'>
+            <div x-data="{}" x-show = 'courses.filteredCourses.length == 0' class = 'no-results'>
                 <h1>Sorry, No courses were found with your query.</h1>
             </div>
-            <div >
+            <div x-show = 'courses.filteredCourses.length > 0' x-data="{}" x-init = "courses.loadMarkers()">
                 <div class = 'map stick-top'>
                     <div id="map" class="stick"></div>
 

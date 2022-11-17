@@ -185,6 +185,13 @@ h1{
     text-align:center
 }
 
+.leaflet-marker-icon{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}
+
+img.huechange { filter: hue-rotate(200deg); }
+
 
 .stick {
     position: -webkit-sticky;

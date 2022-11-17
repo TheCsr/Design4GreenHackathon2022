@@ -21,6 +21,7 @@ let event = new CustomEvent("courses-load", {
             location : "",
             duration : 1,
         },
+        markers: [],
         data: [],
         get filteredCourses() {
             if (this.search === "") {
@@ -34,6 +35,25 @@ let event = new CustomEvent("courses-load", {
                 return entries.some(entry=>entry[1]?entry[1].toString().includes(this.search):false);
             })
         },
+        loadMarkers(){
+            console.log("data",this.data)
+            console.log("Loading Markers....")
+            this.data.forEach(course => {
+                if(course['Location'] !="National"){
+                    let marker = L.marker([course['Latitude'], course['Longitude']]).addTo(window.map);
+                    this.markers.push(marker)
+                    
+                }
+                else{
+                    let nationalMarker = L.marker([46.22, 2.21]).addTo(window.map);
+                    nationalMarker._icon.classList.add("huechange");
+                    this.markers.push(nationalMarker)
+                }
+            });
+            console.log(this.markers)
+            
+        }
+
 
         
 
