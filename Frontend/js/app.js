@@ -22,7 +22,6 @@ let event = new CustomEvent("courses-load", {
             duration : 1,
         },
         data: [],
-        filteredResults : [],
         get filteredCourses() {
             if (this.search === "") {
               return this.data;
@@ -35,21 +34,7 @@ let event = new CustomEvent("courses-load", {
                 return entries.some(entry=>entry[1]?entry[1].toString().includes(this.search):false);
             })
         },
-        filterResults(){
-            keptCourses = 0;
-            let r = this.filteredCourses.filter(course => {
-            if(
-                this.selectedFilters.trainingType == course["Type of Training"] || 
-                this.selectedFilters.trainingType == "any"|| 
-                this.selectedFilters.trainingType == ""
-             ){
-                keptCourses++;
-                return course
-             }
-           })
-           console.log("Kept courses",r.length)
-           this.filteredCourses = r   
-        }
+
         
 
       }
