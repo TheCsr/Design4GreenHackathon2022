@@ -339,6 +339,12 @@
             maxZoom: 8,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,  &copy; <a href="https://carto.com/attributions">CARTO</a>'
         }).addTo(map);
+        // Shorten a string to less than maxLen characters without truncating words.
+        function shorten(str, maxLen, separator = ' ') {
+            if (str == null) return str;
+            if (str.length <= maxLen) return str;
+            return str.substr(0, str.lastIndexOf(separator, maxLen));
+            }
     </script>
     <!-- <script src="js/app.js"></script> -->
 </body>
