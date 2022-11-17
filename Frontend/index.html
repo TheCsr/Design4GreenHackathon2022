@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/pico.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/alpine.min.js" defer></script>
+    <script src="js/modal.js"></script>
 
 </head>
 
@@ -84,7 +85,7 @@
                         <li><a>Something else here</a></li>
                     </ul>
                 </details> -->
-    
+
                 <div id="duration-range">
                     <label for="range">Training duration
                         <input type="range" min="0" max="100" value="50" id="range" name="range">
@@ -92,8 +93,8 @@
                 </div>
             </div>
         </div>
-  
-        
+
+
 
         <div class="grid">
            
@@ -102,11 +103,13 @@
                 <template x-for="course in courses.filteredCourses">
                     <article>
                         <h1 x-text="course['Course Title']"></h1>
-                        <div class = "organisation">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
-                            </svg>                              
-                            <h6 x-text = "course['Organisation Name']"></h6>
+                        <div class="organisation">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                            </svg>
+                            <h6 x-text="course['Organisation Name']"></h6>
                         </div>
                         <div class = "description">
                             <h6>Programme Description :</h6>
@@ -120,28 +123,62 @@
                                 </svg>                                  
                                 <span x-text="course['Duration (days)']"></span>
                             </div>
-                            <div class = "column">
-                                <svg xmlns="http://www.w3.org/2000/svg" alt="Location" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                                  </svg>                                  
+                            <div class="column">
+                                <svg xmlns="http://www.w3.org/2000/svg" alt="Location" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                                </svg>
                                 <span x-text="course['Location']"></span>
                             </div>
-                            <div class = "column">
+                            <div class="column">
                                 <span x-text="course['Type of Training']"></span>
                             </div>
                         </div>
                         <button data-target="modal-example" onclick="toggleModal(event)"> .....more details</button>
-    
-    
-    
+
+
+
                     </article>
-    
+
                 </template>
 
                 <article>
 
-                    Card 2
+                    Card 2 :
+                    <h1>Title of the course</h1>
+                    <h3>Name of the organisation</h3>
+                    Duration of the training +
+                    Location of the structure<br>
+                    Methods of access to training<br>
+                    Short Description of the programme
+
+                    <div class="card-buttons">
+                        <span>
+                            <a href="#" role="button" class="primary btn">
+                                <svg alt="Add to cart" class="add-to-cart-icon" data-target="modal-add-to-cart"
+                                    onclick="toggleModal(event)" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>Add</span>
+                            </a>
+                            <a href="#" role="button" class="secondary btn" data-target="modal-more-info">
+
+                                <svg alt="More info" class="more-info-icon" data-target="modal-more-info"
+                                    onclick="toggleModal(event)" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                </svg>
+                                <span> Info </span>
+                            </a>
+                        </span>
+                    </div>
+
                 </article>
 
                 <article>
@@ -155,23 +192,71 @@
             <div >
                 <div class = 'map stick-top'>
                     <div id="map" class="stick"></div>
-                
+
                 </div>
             </div>
         </div>
     </main>
 
 
-    <dialog id="modal-example">
-        <article>
-            <a href="#close" aria-label="Close" class="close" data-target="modal-example"
+    <dialog id="modal-more-info">
+        <article class="modal-custom">
+            <a href="#close" aria-label="Close" class="close" data-target="modal-more-info"
                 onclick="toggleModal(event)"></a>
-            <h3>More info abt the course here... </h3>
-            <p>Cras sit amet maximus risus. Pellentesque sodales odio sit amet augue finibus pellentesque. Nullam
-                finibus risus non semper euismod.</p>
+            13 items !
+            <h1>@Title of the course </h1>
+            <div class="course-details">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+                </svg>
+                <b>Organisation :</b> @Organisation, @type of organisation
+                <!-- <h6 x-text="course['Organisation Name']"></h6> -->
+
+                <p>
+                    <svg xmlns="http://www.w3.org/2000/svg" alt="Duration" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                   <b>Duration :</b>  @Duration
+                    <br>
+
+                    <svg xmlns="http://www.w3.org/2000/svg" alt="Location" fill="none" viewBox="0 0 24 24"
+                        stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                    </svg>
+
+                  <b> Location:</b>  @Location
+                    <br>
+                    <b>Type of training :</b> @Type of training
+                    <br>
+                    <b>Formation : </b>@Continuing or initial
+                    <br>
+                    <b>Name of dept :</b> @name of dept
+                    <br>
+                    <b>Cycle de formation :</b> @cycle de formation
+                    <br>
+                    <b> Does this training lead to a validation of prior learning? </b>
+                    @validation of prior learning?
+                    <br>
+                    <b>Description : </b> @short Description
+                    <br>
+                    <b>Objectives :</b> @prog objectives
+                    <br>
+                    <b>Website :</b> @url link
+                </p>
+
+            </div>
+
             <footer>
-                <!-- <a href="#cancel" role="button" class="secondary" data-target="modal-example" onclick="toggleModal(event)">Cancel</a> -->
-                <a href="#confirm" role="button" data-target="modal-example" onclick="toggleModal(event)">Add to
+                <a href="#cancel" role="button" class="secondary" data-target="modal-more-info"
+                    onclick="toggleModal(event)">Cancel</a>
+                <a href="#confirm" role="button" data-target="modal-more-info" onclick="toggleModal(event)">Add to
                     cart</a>
             </footer>
         </article>
@@ -194,7 +279,7 @@
 
 
     <dialog id="modal-cart">
-        <article>
+        <article class="modal-custom">
             <a href="#close" aria-label="Close" class="close" data-target="modal-cart" onclick="toggleModal(event)"></a>
             <h3>Your basket </h3>
             <table>
@@ -210,7 +295,7 @@
                         <th scope="row">1</th>
                         <td>Cell</td>
                         <!-- <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30" data-target="modal-delete" onclick="toggleModal(event)"></td> -->
-                        <td><img src="assets/img/delete1.png" alt="Cart" height="30" width="30"></td>
+                        <td><img src="assets/img/delete1.png" alt="Delete from cart" height="30" width="30"></td>
                     </tr>
                     <tr>
                         <th scope="row">2</th>
@@ -233,7 +318,7 @@
                     onclick="toggleModal(event)">Export to PDF</a>
                 <a href="#exportExcel" role="button" class="contrast outline" data-target="modal-cart"
                     onclick="toggleModal(event)">Export to Excel</a>
-                <a href="#confirm" role="button" data-target="modal-cart" onclick="toggleModal(event)">Confirm my
+                <a href="#confirm" role="button" data-target="modal-cart" onclick="toggleModal(event)">Confirm
                     basket</a>
             </footer>
         </article>
@@ -242,22 +327,19 @@
         <small> Deisgned by : team26</small>
 
     </footer>
-    
+
     <script src="js/leaflet.js"></script>
-    <script src="js/modal.js"></script>
+
     <script>
         /* Leaflet map logic*/
-    var map = L.map('map').setView([46.52, 1.5], 6);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
-        maxZoom: 8,
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,  &copy; <a href="https://carto.com/attributions">CARTO</a>'
-    }).addTo(map);
-    function shorten(str, maxLen, separator = ' ') {
-        if (str.length <= maxLen) return str;
-        return str.substr(0, str.lastIndexOf(separator, maxLen));
-    }
+        // var map = L.map('map').setView([46.52, 1.5], 6);
+        var map = L.map('map').setView([47.09, 3.3], 6);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png', {
+            maxZoom: 8,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>,  &copy; <a href="https://carto.com/attributions">CARTO</a>'
+        }).addTo(map);
     </script>
-    <script src="js/app.js"></script>
+    <!-- <script src="js/app.js"></script> -->
 </body>
 
 </html>
