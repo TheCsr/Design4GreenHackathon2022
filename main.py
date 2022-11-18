@@ -32,7 +32,6 @@ def home():
 @app.post("/sendEmail")
 async def sendEmail(msg: str):
     yag = yagmail.SMTP('hackathon2022team26@gmail.com', 'xtcfgqkknmvleeuj')
-    logger.info(msg)
     try:
         yag.send('dealyweb99@gmail.com', 'test', msg)
         return {"send": "successful"}
