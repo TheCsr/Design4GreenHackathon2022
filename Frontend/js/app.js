@@ -22,7 +22,7 @@ function getUniqueValues(arr,col){
 
 
 
-var mode = 'local' // Or prod
+var mode = 'prod' // Or prod
 var baseUrl = {
     local: "http://127.0.0.1:8000",
     prod: "http://54.36.98.185:3000"
