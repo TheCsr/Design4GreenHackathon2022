@@ -33,7 +33,7 @@ def home():
 async def sendEmail(msg: str):
     yag = yagmail.SMTP('hackathon2022team26@gmail.com', 'xtcfgqkknmvleeuj')
     try:
-        yag.send('csrrocz@gmail.com', 'test', msg)
+        yag.send('design4green@etik.com', 'Quote for Design4Green Platform', msg)
         return {"send": "successful"}
     except:
         return {"error": "error"}
