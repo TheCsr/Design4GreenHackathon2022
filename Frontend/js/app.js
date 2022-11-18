@@ -5,9 +5,32 @@ this event on the main page, thus load a global courses object that is accessibl
 The courses object contains not just courses data, but also different functions related to that data like filtering
 */
 
+
+window.post = function(url, data) {
+    return fetch(url, {method: "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data)});
+}
+
+window.buildQuoteEmail = function(idString){
+    let msg = "Hello,\n I would like to receive a quote for the following courses included in this pdf : " + baseUrl[mode] + "/export/?ids=" + idString + "\n Regards, \n Client"
+    return encodeURIComponent(msg) 
+}
+
+
 function getUniqueValues(arr,col){
     return Array.from(new Set(arr.map((item) => item[col])))
 }
+
+
+
+var mode = 'local' // Or prod
+var baseUrl = {
+    local: "http://127.0.0.1:8000",
+    prod: "http://54.36.98.185:3000"
+}
+
+
+
+
 
 
 let event = new CustomEvent("courses-load", {
@@ -84,7 +107,7 @@ function reqError(err) {
 var oReq = new XMLHttpRequest();
 oReq.onload = reqListener;
 oReq.onerror = reqError;
-oReq.open('get', 'http://54.36.98.185:3000/courses', true);
+oReq.open('get', baseUrl[mode]+'/courses', true);
 oReq.send();
 /*
 document.addEventListener('alpine:init', () => {

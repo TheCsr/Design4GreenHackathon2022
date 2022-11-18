@@ -27,12 +27,22 @@
           });
         localStorage.setItem('cart',JSON.stringify(newCart))
         this.cart = newCart
+    },
+    exportIDs(){
+        return this.cart.map(item => {
+            return item.id
+        }).join(',')
+    },
+    sendQuote(){
+        post('/sendEmail?msg='+buildQuoteEmail(this.exportIDs()))
     }
+
 }" @courses-load.window = "courses = $event.detail.courses">
         <div class = 'header stick-top'>
             <nav class="menu">
                 <ul>
                     <li>
+                        
                         <a href="#" class="secondary">
                             <img src="assets/img/DESIGN4GREEN_logo.png" alt="Logo" class="logo">
                         </a>
@@ -232,11 +242,9 @@
                 
                 <div class = 'modal-footer'>
                     
-                    <a href="#exportPDF" role="button" class="contrast outline" data-target="modal-cart"
-                        @click="exportPDF()">Export to PDF</a>
-                    
-                    <a href="#confirm"  role="button" data-target="modal-cart" @click="confirm">Confirm
-                        basket</a>
+                    <a x-bind:href="'/export/?ids='+exportIDs()" target="_blank" role="button" class="contrast outline" data-target="modal-cart"
+                        >Export to PDF</a>
+                    <a href="#" @click="sendQuote()"  role="button" data-target="modal-cart" @click="confirm">Get Quote</a>
                     </div>
                 </div>
         </div>

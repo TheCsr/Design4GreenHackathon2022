@@ -1,12 +1,13 @@
 import json
 from starlette.responses import FileResponse 
 from fastapi.staticfiles import StaticFiles
+import logging
 from fastapi import FastAPI
 import yagmail
 import pdfkit
 
 app = FastAPI()
-
+logger = logging.getLogger(__name__)
 f = open('data.json')
 data = json.load(f)
 courses = data["data"]
@@ -18,8 +19,9 @@ def home():
 @app.post("/sendEmail")
 async def sendEmail(msg: str):
     yag = yagmail.SMTP('hackathon2022team26@gmail.com', 'xtcfgqkknmvleeuj')
+    logger.info(msg)
     try:
-        yag.send('csrrocz@gmail.com', 'test', msg)
+        yag.send('dealyweb99@gmail.com', 'test', msg)
         return {"send": "successful"}
     except:
         return {"error": "error"}
