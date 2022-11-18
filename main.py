@@ -5,16 +5,31 @@ import logging
 from fastapi import FastAPI
 import yagmail
 import pdfkit
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-logger = logging.getLogger(__name__)
+# origins = ["http://54.36.98.185:3000","http://54.36.98.185/","http://54.36.98.185",
+#                    "http://WWW.54.36.98.185:3000", "http://www.vps-e475b14c.vps.ovh.net:3000",
+#                    "http://www.vps-e475b14c.vps.ovh.net/","http://vps-e475b14c.vps.ovh.net","http://www.vps-e475b14c.vps.ovh.net"]
+
+origins = ['http://vps-e475b14c.vps.ovh.net:3000','http://127.0.0.1:8000/courses', 'http://127.0.0.1:8000',"http://54.36.98.185:3000"]
+
+app.add_middleware (
+    CORSMiddleware,
+    allow_origins= origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 f = open('data.json')
 data = json.load(f)
 courses = data["data"]
 
 @app.get("/courses")
 def home():
-    return {'data': data}
+    response = {'data': data}
+    return response
 
 @app.post("/sendEmail")
 async def sendEmail(msg: str):
