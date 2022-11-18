@@ -7,12 +7,12 @@ import pdfkit
 from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
-app.add_middleware(
+origins = ["http://54.36.98.185:3000","http://54.36.98.185/","http://54.36.98.185",
+                   "http://WWW.54.36.98.185:3000", "http://www.vps-e475b14c.vps.ovh.net:3000",
+                   "http://www.vps-e475b14c.vps.ovh.net/","http://vps-e475b14c.vps.ovh.net","http://www.vps-e475b14c.vps.ovh.net"]
+app.add_middleware (
     CORSMiddleware,
-    allow_origins=['http://54.36.98.185:3000','http://54.36.98.185/','http://54.36.98.185',
-                   ,'http://WWW.54.36.98.185:3000', 'http://www.vps-e475b14c.vps.ovh.net:3000',
-                   'http://www.vps-e475b14c.vps.ovh.net/','http://vps-e475b14c.vps.ovh.net','http://www.vps-e475b14c.vps.ovh.net'],
+    allow_origins= origins,
     allow_credentials=True,
     allow_methods=["POST","GET"],
     allow_headers=["*"],
