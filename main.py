@@ -4,8 +4,19 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
 import yagmail
 import pdfkit
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 f = open('data.json')
 data = json.load(f)
