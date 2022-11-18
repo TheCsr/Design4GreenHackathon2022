@@ -8,11 +8,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-origins = ["*"]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=['*'],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -24,7 +22,9 @@ courses = data["data"]
 
 @app.get("/courses")
 def home():
-    return {'data': data}
+    response = {'data': data}
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 @app.post("/sendEmail")
 async def sendEmail(msg: str):
