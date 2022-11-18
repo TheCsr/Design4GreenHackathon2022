@@ -11,13 +11,13 @@ app = FastAPI()
 #                    "http://WWW.54.36.98.185:3000", "http://www.vps-e475b14c.vps.ovh.net:3000",
 #                    "http://www.vps-e475b14c.vps.ovh.net/","http://vps-e475b14c.vps.ovh.net","http://www.vps-e475b14c.vps.ovh.net"]
 
-origins = ['http://vps-e475b14c.vps.ovh.net:3000','http://127.0.0.1:8000/courses']
+origins = ['http://vps-e475b14c.vps.ovh.net:3000','http://127.0.0.1:8000/courses', 'http://127.0.0.1:8000',"http://54.36.98.185:3000"]
 
 app.add_middleware (
     CORSMiddleware,
     allow_origins= origins,
     allow_credentials=True,
-    allow_methods=["POST","GET"],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
 
