@@ -10,9 +10,11 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],
+    allow_origins=['http://54.36.98.185:3000','http://54.36.98.185/','http://54.36.98.185',
+                   ,'http://WWW.54.36.98.185:3000', 'http://www.vps-e475b14c.vps.ovh.net:3000',
+                   'http://www.vps-e475b14c.vps.ovh.net/','http://vps-e475b14c.vps.ovh.net','http://www.vps-e475b14c.vps.ovh.net'],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["POST","GET"],
     allow_headers=["*"],
 )
 
@@ -23,7 +25,6 @@ courses = data["data"]
 @app.get("/courses")
 def home():
     response = {'data': data}
-    response.headers.add('Access-Control-Allow-Origin', '*')
     return response
 
 @app.post("/sendEmail")
