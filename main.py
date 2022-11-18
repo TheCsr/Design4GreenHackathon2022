@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi import FastAPI
 import yagmail
 import pdfkit
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
