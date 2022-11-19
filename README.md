@@ -5,7 +5,7 @@ github repo for the green hackathon
 
 
 
-#Topic made by the INR (Institut du Numérique Responsable)
+# Topic made by the INR (Institut du Numérique Responsable)
 Context
 One of the objectives of the "training and skills" working group managed by the Institut du
 Numérique Responsable has been to identify sustainable digital trainings.
@@ -34,8 +34,12 @@ Documents provided
 
 ///////////////////************************************************************************************************\\\\\\\\\\\\\\\
 
-#Requirements
+# Requirements
 
 Alpine js -> as the UI library
 FASTApi -> FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.7+ based on standard Python type hints
 VPS -> for hosting the application
+
+# COmmand to run
+
+*uvicorn main:app --reload*
